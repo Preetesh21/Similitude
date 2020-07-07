@@ -132,6 +132,15 @@ body {
     transform: translate(-50%, -50%);
 }
 
+#pred-result2 {
+    color: black;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 90%;
+    left: 57%;
+    transform: translate(-120%, -50%);
+}
+
 #loader {
     position: absolute;
     top: 50%;

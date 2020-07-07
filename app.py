@@ -3,7 +3,7 @@ import sys
 import numpy as np
 import cv2
 import json
-
+import pandas as pd
 
 # Flask
 from flask import Flask, redirect, url_for, request, render_template, Response, jsonify, redirect
@@ -59,7 +59,12 @@ def model_predict(img1,img2, model):
 
 
     result=model.predict([a,b])
-    return result
+    
+    df=pd.DataFrame(result, columns=["x"])
+    print(df)
+    df=df.to_json(orient="records")
+    print(df)
+    return df
 
 
 @app.route('/', methods=['GET'])
@@ -90,13 +95,13 @@ def predict():
         # result = result.replace('_', ' ').capitalize()
         
         # Serialize the result, you can add additional fields
-        print(preds)
         type(preds)
         result=preds
-        lists = result.tolist()
-        json_str = json.dumps(lists)
-        print(json_str)
-        return jsonify(json_str)
+        # lists = result.tolist()
+        # json_str = json.dumps(lists)
+        # print(json_str)
+        print(result)
+        return jsonify(result)
 
     return None
 

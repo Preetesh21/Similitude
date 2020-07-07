@@ -194,11 +194,12 @@ function predictImage(image, image2) {
         .then((response) => response.json())
         .then(resp => {
             console.log(resp)
-            console.log(resp.value)
-            if (resp.ok)
-                resp.json().then(data => {
-                    displayResult(data);
-                });
+            console.log(typeof resp)
+            if (resp)
+                console.log('g')
+            resp = JSON.parse(resp);
+            console.log(resp)
+            displayResult(resp);
         })
         .catch(err => {
             console.log("An error occured", err.message);
@@ -216,11 +217,16 @@ function displayImage(image, id) {
 function displayResult(data) {
     // display the result
     // imageDisplay.classList.remove("loading");
+    console.log(data)
+    console.log(typeof data)
+    resp = JSON.parse(JSON.stringify(data))
+    console.log(resp);
+    console.log(data[0].x)
     hide(loader);
-    predResult.innerHTML = data.result;
+    predResult.innerHTML = data[0].x;
     show(predResult);
     hide(loader2);
-    predResult2.innerHTML = data.result;
+    predResult2.innerHTML = data[0].x;
     show(predResult2);
 }
 

@@ -24,7 +24,6 @@ def base64_to_pil(img_base64):
     
     pil_image = Image.open(BytesIO(base64.b64decode(image_data)))
     pil_image2 = Image.open(BytesIO(base64.b64decode(image_data2)))
-    print(pil_image,pil_image2)
     return (pil_image,pil_image2)
 
 
